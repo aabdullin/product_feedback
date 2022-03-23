@@ -1,0 +1,17 @@
+.card {
+  display: flex;
+  flex-direction: row;
+  margin: 0px;
+  border-color: black;
+}
+
+.left-item,
+.right-item,
+.middle {
+  margin: 0px 10px 12px 0px;
+}
+
+.middle {
+  display: flex;
+  flex-direction: column;
+}

@@ -1,3 +1,10 @@
+.cards {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .App {
   text-align: center;
 }

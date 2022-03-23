@@ -1,0 +1,10 @@
+.product_feedback {
+    display: flex;
+  flex-direction: row;
+}
+
+.add_feedback-btn {
+  height: 20px;
+  width: 90px;
+  font-size: 8px;
+}
