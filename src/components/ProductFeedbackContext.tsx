@@ -7,12 +7,14 @@ interface ProductFeedbackContextProps {
     items: Array<ItemType>
     sortBy: (sortColumn: string) => void
     filter: (tag: string) => void    
+    clear: () => void
 }
 
 export const ProductFeedbackContext = React.createContext<ProductFeedbackContextProps>({
     items: [],
     sortBy: () => {},
-    filter: () => {}
+    filter: () => {},
+    clear: () => {}
 });
 
 export const useProductFeedback = () => {
@@ -51,6 +53,10 @@ export const ProductFeedbackProvider = ({children} : { children: ReactNode }) =>
             return {
                 items: filteredItems,
             };
+          case "clear":
+            return {
+                items: items,
+            };
           default:
             throw new Error();
         }
@@ -69,11 +75,22 @@ export const ProductFeedbackProvider = ({children} : { children: ReactNode }) =>
           type: 'filter',
           tag
       })
+    }
+
+    
+    const clear = () => {
+      dispatch({
+          type: 'clear',
+      })
   }
 
     useEffect(() => {
         sortBy('upvotes')
     }, [])
+
+  //   useEffect(() => {
+  //     sortBy('upvotes')
+  // }, [state])
     
     return (
         <ProductFeedbackContext.Provider
@@ -81,10 +98,10 @@ export const ProductFeedbackProvider = ({children} : { children: ReactNode }) =>
             items: [ ...state.items ],
             sortBy,
             filter,
+            clear
           }}
         >
           {children}
         </ProductFeedbackContext.Provider>
-      );
+    );
 }
-
