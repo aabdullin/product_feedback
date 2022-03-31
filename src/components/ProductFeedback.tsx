@@ -1,6 +1,7 @@
 import React from 'react';
 import { FC } from 'react'
 import "../css/ProductFeedback.css"
+import '@fontsource/roboto/400.css';
 
 interface CardProps {
     name: string,

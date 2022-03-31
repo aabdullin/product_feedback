@@ -8,6 +8,8 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 
+
+
 import { useProductFeedback } from './ProductFeedbackContext';
 
 
@@ -17,30 +19,29 @@ const Header = () => {
     return (
         <div className='product_feedback'>
             <div className="text">
-                Suggestions <br/>
-            </div>
-            <div className="text">
                 Sort by :
             </div>
+            
             <div className="dropdown">
-            <Box sx={{ minWidth: 120 }}>
-                <FormControl fullWidth>
-
-                    <InputLabel id="demo-simple-select-label">Age</InputLabel>
-                    <Select
-                        onChange={(e) => { sortBy(e.target.value) }}
-                    >
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
-                        {/* <option value="upvotes">Most upvotes</option>
-                        <option value="comments">Most comments</option> */}
-                    </Select>
-                </FormControl>
-
-            </Box>
-
+                <Box sx={{ minWidth: 120 }}>
+                    <FormControl fullWidth>
+                        <InputLabel id="demo-simple-select-label">Most upvotes</InputLabel>
+                        <Select
+                            onChange={(e) => { sortBy(e.target.value as string) }}
+                        >
+                            <MenuItem value={10}>Most upvotes</MenuItem>
+                            <MenuItem value={20}>Most comments</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Box>
+                {/* <select
+                    onChange={(e) => { sortBy(e.target.value) }}
+                >
+                    <option value="upvotes">Most upvotes</option>
+                    <option value="comments">Most comments</option>
+                </select> */}
             </div>
+
             <Button variant="text" className='add_feedback-btn'>+ Add Feedback</Button>
         </div>
     );
