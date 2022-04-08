@@ -1,5 +1,6 @@
 import React from 'react';
 import { FC } from 'react'
+import Grid from '@mui/material/Grid';
 import "../css/ProductFeedback.css"
 import '@fontsource/roboto/400.css';
 
@@ -12,20 +13,24 @@ interface CardProps {
 }
 
 const ProductFeedbackCard: FC<CardProps> = ({name, upvotes, comments, description, tag}) => {
+  ////className='card'>
+  //className='left-item'
+  // className='right-item'
+  //className='middle'
   return (
-      <div className='card'>
-          <div className='left-item'>
+      <Grid container spacing={2}> 
+          <Grid item xs={1}>
             {upvotes}
-          </div>
-          <div className='middle'>
+          </Grid>
+          <Grid item xs={8} >
             <div className='title'> {name} </div>
             <div className='description'> {description} </div>
             <div className='tag'> {tag} </div>
-          </div>
-          <div className='right-item'>
+          </Grid>
+          <Grid item xs={2}>
             {comments}
-          </div>
-      </div>
+          </Grid>
+      </Grid>
   );
 };
 

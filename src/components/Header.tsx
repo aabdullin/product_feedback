@@ -1,12 +1,16 @@
-import React from 'react';
 import { useState, useEffect, createContext, useContext, } from 'react';
 import "../css/Header.css"
 import Button from '@mui/material/Button';
 import InputLabel from '@mui/material/InputLabel';
 import Box from '@mui/material/Box';
-import Select from '@mui/material/Select';
+import Select,  { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
+import Grid from '@mui/material/Grid';
+import {
+    BrowserRouter as Router,
+    Link,
+} from "react-router-dom";
 
 
 
@@ -14,36 +18,30 @@ import { useProductFeedback } from './ProductFeedbackContext';
 
 
 const Header = () => {
-    const { sortBy } = useProductFeedback();
+    const { sortColumn, sortBy } = useProductFeedback();
 
     return (
-        <div className='product_feedback'>
-            <div className="text">
+        <Grid className='product_feedback'>
+            <Grid item xs={1} className="text">
                 Sort by :
-            </div>
-            
-            <div className="dropdown">
-                <Box sx={{ minWidth: 120 }}>
+            </Grid>
+            <Grid item xl={8} className="dropdown">
+                <Box sx={{ width: 200 }}>
                     <FormControl fullWidth>
-                        <InputLabel id="demo-simple-select-label">Most upvotes</InputLabel>
                         <Select
-                            onChange={(e) => { sortBy(e.target.value as string) }}
+                            onChange={(e: SelectChangeEvent<string>) => { sortBy(e.target.value) }}
+                            value={sortColumn}
                         >
-                            <MenuItem value={10}>Most upvotes</MenuItem>
-                            <MenuItem value={20}>Most comments</MenuItem>
+                            <MenuItem value={"upvotes"}>Most upvotes</MenuItem>
+                            <MenuItem value={"comments"}>Most comments</MenuItem>
                         </Select>
                     </FormControl>
                 </Box>
-                {/* <select
-                    onChange={(e) => { sortBy(e.target.value) }}
-                >
-                    <option value="upvotes">Most upvotes</option>
-                    <option value="comments">Most comments</option>
-                </select> */}
-            </div>
-
-            <Button variant="text" className='add_feedback-btn'>+ Add Feedback</Button>
-        </div>
+            </Grid>
+            <Link to="/add">
+                <Button variant="text" className='add_feedback-btn'>+ Add Feedback</Button>
+            </Link>
+        </Grid>
     );
   };
 

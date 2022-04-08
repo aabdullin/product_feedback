@@ -1,6 +1,7 @@
-
+import '../css/ProductList.css';
 import ProductFeedbackCard from "./ProductFeedback"
 import { ItemType } from '../db';
+
 
 
 interface ProductFeedbackListProps {
@@ -13,7 +14,7 @@ function ProductFeedbackList ({ items } : ProductFeedbackListProps){
             <div className="cards">
                 {items.map((item, index) => {
                     return (
-                        <div key={index}>
+                        <div key={index} className="card">
                             <ProductFeedbackCard name={item.name} upvotes={item.upvotes} comments={item.comments} description={item.description} tag={item.tag}></ProductFeedbackCard>
                         </div>
                     )

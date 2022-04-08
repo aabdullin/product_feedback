@@ -1,10 +1,11 @@
 
 import React, { Reducer } from 'react';
-import {useEffect, useContext, useReducer, ReactNode} from 'react';
+import {useEffect, useContext, useReducer, useState, ReactNode} from 'react';
 import {items, ItemType} from '../db'
 
 interface ProductFeedbackContextProps {
     items: Array<ItemType>
+    sortColumn: string,
     sortBy: (sortColumn: string) => void
     filter: (tag: string) => void    
     clear: () => void
@@ -12,6 +13,7 @@ interface ProductFeedbackContextProps {
 
 export const ProductFeedbackContext = React.createContext<ProductFeedbackContextProps>({
     items: [],
+    sortColumn: '',
     sortBy: () => {},
     filter: () => {},
     clear: () => {}
@@ -26,6 +28,7 @@ export const useProductFeedback = () => {
 };
 
 export const ProductFeedbackProvider = ({children} : { children: ReactNode }) => {
+    const [sortColumn, setSortColumn] = useState<string>('');
     interface ReducerState {
         items: Array<ItemType>,
     }
@@ -43,6 +46,7 @@ export const ProductFeedbackProvider = ({children} : { children: ReactNode }) =>
                     return 0;
                 }
             })
+            setSortColumn(action.sortColumn);
             return {
                 items: sortedItems,
             };
@@ -77,7 +81,6 @@ export const ProductFeedbackProvider = ({children} : { children: ReactNode }) =>
       })
     }
 
-    
     const clear = () => {
       dispatch({
           type: 'clear',
@@ -96,6 +99,7 @@ export const ProductFeedbackProvider = ({children} : { children: ReactNode }) =>
         <ProductFeedbackContext.Provider
           value={{
             items: [ ...state.items ],
+            sortColumn,
             sortBy,
             filter,
             clear

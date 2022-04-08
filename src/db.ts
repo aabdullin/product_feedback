@@ -36,6 +36,20 @@ let items: Array<ItemType> = [
     description: "Images and screencasts can enhance comments on solutions",
     tag: "enhancement",
   },
+  {
+    name: "Add credentials",
+    upvotes: "33",
+    comments: "4",
+    description: "Implement OIDC",
+    tag: "bug",
+  },  
+  {
+    name: "Add feature to connect with customer support",
+    upvotes: "11",
+    comments: "14",
+    description: "Customer support ",
+    tag: "ui",
+  },
 ];
 
 export { items };

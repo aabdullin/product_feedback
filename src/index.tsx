@@ -4,13 +4,17 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ProductFeedbackProvider  } from './components/ProductFeedbackContext'
+import { BrowserRouter as Router } from "react-router-dom";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ProductFeedbackProvider>
-      <App />
-    </ProductFeedbackProvider>
-  </React.StrictMode>,
+  <Router>
+    <React.StrictMode>
+      <ProductFeedbackProvider>
+        <App />
+      </ProductFeedbackProvider>
+    </React.StrictMode>
+  </Router>
+,
   document.getElementById('root')
 );
 
