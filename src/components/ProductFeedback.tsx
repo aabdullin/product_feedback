@@ -13,10 +13,6 @@ interface CardProps {
 }
 
 const ProductFeedbackCard: FC<CardProps> = ({name, upvotes, comments, description, tag}) => {
-  ////className='card'>
-  //className='left-item'
-  // className='right-item'
-  //className='middle'
   return (
       <Grid container spacing={2}> 
           <Grid item xs={1}>
