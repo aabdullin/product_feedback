@@ -8,7 +8,9 @@ interface ProductFeedbackContextProps {
     sortColumn: string,
     sortBy: (sortColumn: string) => void
     filter: (tag: string) => void    
-    clear: () => void
+    clear: () => void,
+    upvote: () => void,
+    downvote: () => void
 }
 
 export const ProductFeedbackContext = React.createContext<ProductFeedbackContextProps>({
@@ -16,19 +18,22 @@ export const ProductFeedbackContext = React.createContext<ProductFeedbackContext
     sortColumn: '',
     sortBy: () => {},
     filter: () => {},
-    clear: () => {}
+    clear: () => {},
+    upvote: () => {},
+    downvote: () => {}
 });
 
 export const useProductFeedback = () => {
     const context = useContext(ProductFeedbackContext);
     if (context === undefined) {
-      throw new Error("useTodos must be used within a UsersProvider");
+      throw new Error("products must be used within a UsersProvider");
     }
     return context;
 };
 
 export const ProductFeedbackProvider = ({children} : { children: ReactNode }) => {
     const [sortColumn, setSortColumn] = useState<string>('');
+    const [count, setCount] = useState(0);
     interface ReducerState {
         items: Array<ItemType>,
     }
@@ -61,6 +66,14 @@ export const ProductFeedbackProvider = ({children} : { children: ReactNode }) =>
             return {
                 items: items,
             };
+          case "upvote":
+            return {
+              items: setCount(count + 1)
+            };
+          case "downvote":
+            return {
+              items: setCount(count - 1)
+            };
           default:
             throw new Error();
         }
@@ -85,15 +98,23 @@ export const ProductFeedbackProvider = ({children} : { children: ReactNode }) =>
       dispatch({
           type: 'clear',
       })
-  }
+    }
+
+    const upvote = () => {
+      dispatch({
+          type: 'upvote',
+      })
+    }
+
+    const downvote = () => {
+      dispatch({
+          type: 'downvote',
+      })
+    }
 
     useEffect(() => {
         sortBy('upvotes')
     }, [])
-
-  //   useEffect(() => {
-  //     sortBy('upvotes')
-  // }, [state])
     
     return (
         <ProductFeedbackContext.Provider
@@ -102,7 +123,9 @@ export const ProductFeedbackProvider = ({children} : { children: ReactNode }) =>
             sortColumn,
             sortBy,
             filter,
-            clear
+            clear,
+            upvote,
+            downvote
           }}
         >
           {children}
