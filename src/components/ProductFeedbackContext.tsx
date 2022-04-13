@@ -67,12 +67,14 @@ export const ProductFeedbackProvider = ({children} : { children: ReactNode }) =>
                 items: items,
             };
           case "upvote":
+            setCount(count => count + 1)
             return {
-              items: setCount(count + 1)
+              items: count
             };
           case "downvote":
+            setCount(count => count - 1)
             return {
-              items: setCount(count - 1)
+              items: count
             };
           default:
             throw new Error();
