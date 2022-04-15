@@ -5,16 +5,22 @@ import {items, ItemType} from '../db'
 
 interface ProductFeedbackContextProps {
     items: Array<ItemType>
+    addItem: (name: string) => void,
+    editItem: (id: number, name: string) => void,
+    deleteItem: (name: string) => void,
     sortColumn: string,
     sortBy: (sortColumn: string) => void
     filter: (tag: string) => void    
     clear: () => void,
-    upvote: () => void,
-    downvote: () => void
+    upvote: (id: number) => void,
+    downvote: (id: number) => void
 }
 
 export const ProductFeedbackContext = React.createContext<ProductFeedbackContextProps>({
     items: [],
+    addItem: () => {},
+    editItem: () => {},
+    deleteItem: () => {},
     sortColumn: '',
     sortBy: () => {},
     filter: () => {},
@@ -39,8 +45,32 @@ export const ProductFeedbackProvider = ({children} : { children: ReactNode }) =>
     }
     function reducer(state: ReducerState, action: any) {
         console.log(state);
-        console.log(action);
+        console.log(action.type);
+        console.log(items)
         switch (action.type) {
+          case "add":
+            return {
+              items: [
+                {
+                  ...action.item,
+                  id: state.items.length + 1,
+                },
+                ...state.items,
+              ],
+            };
+          case "edit":
+            return {
+              items: state.items.map((u) => {
+                if (u.id === action.item.id) {
+                  return action.item;
+                }
+                return u;
+              }),
+            };
+          case "delete":
+            return {
+              items: state.items.filter((u) => u.id !== action.item.id),
+            };
           case "sortBy":
             const sortedItems = items.sort((a, b) => {
                 if (action.sortColumn === 'comments') {
@@ -67,15 +97,23 @@ export const ProductFeedbackProvider = ({children} : { children: ReactNode }) =>
                 items: items,
             };
           case "upvote":
-            setCount(count => count + 1)
-            return {
-              items: count
-            };
+            return  {
+              items: state.items.map((u) => {                
+                return {
+                  ...u,
+                  upvotes: u.id === action.id ? Number(u.upvotes) + 1 : u.upvotes
+                };
+              })
+            }
           case "downvote":
-            setCount(count => count - 1)
-            return {
-              items: count
-            };
+            return  {
+              items: state.items.map((u) => {                
+                return {
+                  ...u,
+                  upvotes: u.id === action.id ? Number(u.upvotes) - 1 : u.upvotes
+                };
+              })
+            }
           default:
             throw new Error();
         }
@@ -83,8 +121,29 @@ export const ProductFeedbackProvider = ({children} : { children: ReactNode }) =>
     const [state, dispatch] = useReducer<Reducer<ReducerState, any>>(reducer, { items });
     
     const sortBy = (sortColumn: string) => {
+      dispatch({
+          type: 'sortBy',
+          sortColumn
+      })
+  }
+
+    const addItem = () => {
+      dispatch({
+          type: 'addItem',
+          sortColumn
+      })
+    }
+
+    const editItem = () => {
+      dispatch({
+          type: 'editItem',
+          sortColumn
+      })
+    }
+
+    const deleteItem = () => {
         dispatch({
-            type: 'sortBy',
+            type: 'deleteItem',
             sortColumn
         })
     }
@@ -102,15 +161,17 @@ export const ProductFeedbackProvider = ({children} : { children: ReactNode }) =>
       })
     }
 
-    const upvote = () => {
+    const upvote = (id: number) => {
       dispatch({
           type: 'upvote',
+          id,
       })
     }
 
-    const downvote = () => {
+    const downvote = (id: number) => {
       dispatch({
           type: 'downvote',
+          id,
       })
     }
 
@@ -122,6 +183,9 @@ export const ProductFeedbackProvider = ({children} : { children: ReactNode }) =>
         <ProductFeedbackContext.Provider
           value={{
             items: [ ...state.items ],
+            addItem,
+            editItem,
+            deleteItem,
             sortColumn,
             sortBy,
             filter,

@@ -15,7 +15,7 @@ function ProductFeedbackList ({ items } : ProductFeedbackListProps){
                 {items.map((item, index) => {
                     return (
                         <div key={index} className="card">
-                            <ProductFeedbackCard name={item.name} upvotes={item.upvotes} comments={item.comments} description={item.description} tag={item.tag}></ProductFeedbackCard>
+                            <ProductFeedbackCard id={item.id} name={item.name} upvotes={item.upvotes} comments={item.comments} description={item.description} tag={item.tag}></ProductFeedbackCard>
                         </div>
                     )
                 })}

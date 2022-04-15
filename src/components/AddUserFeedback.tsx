@@ -3,44 +3,66 @@ import React, {
   } from "react";
   import '../css/AddUserFeedback.css';
   import {
-    BrowserRouter as Router,
     Link,
     useHistory,
-    useParams,
   } from "react-router-dom";
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import { useProductFeedback } from "./ProductFeedbackContext";
+
+
+
 
 const AddUserFeedback = () => {
+    const { addItem } = useProductFeedback();
     const history = useHistory();
     const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [value, setValue] = React.useState('');
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setValue(event.target.value);
+    };
     return (
-      <div className=".userFeedback">
-        <div>
-            <label>
-            User Feedback:
-            <input className="form"
-                type="text"
-                name="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-            />
-            </label>
-        </div>
+      <Box
+      component="form"
+      sx={{
+        '& .MuiTextField-root': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+        <TextField
+            id="outlined-multiline-flexible"
+            multiline
+            maxRows={4}
+            value={value}
+            onChange={handleChange}
+          >
+              <label>
+              User Feedback:
+              <input className="form"
+                  type="text"
+                  name="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+              />
+              </label>
+        </TextField>
 
         <div>
-            <Link to="/">
-            <button>Cancel</button>
-            </Link>
-            <input
-            type="submit"
-            value="Submit"
-            onClick={() => {
-                history.push("/");
-            }}
-            />
+              <Link to="/">
+              <button>Cancel</button>
+              </Link>
+              <input
+              type="submit"
+              value="Submit"
+              onClick={() => {
+                  addItem(name);
+                  history.push("/");
+              }}
+              />
         </div>
-      </div>
+      </Box>
     );
   }
 
