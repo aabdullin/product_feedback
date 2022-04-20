@@ -13,7 +13,7 @@ import { useProductFeedback } from "./ProductFeedbackContext";
 
 
 
-const AddUserFeedback = () => {
+const AddProductFeedback = () => {
     const { addItem } = useProductFeedback();
     const history = useHistory();
     const [name, setName] = useState("");
@@ -39,7 +39,7 @@ const AddUserFeedback = () => {
             onChange={handleChange}
           >
               <label>
-              User Feedback:
+              Product Feedback:
               <input className="form"
                   type="text"
                   name="name"
@@ -66,4 +66,4 @@ const AddUserFeedback = () => {
     );
   }
 
-  export default AddUserFeedback
+  export default AddProductFeedback

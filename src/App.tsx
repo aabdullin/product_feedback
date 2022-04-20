@@ -2,7 +2,10 @@
 import './css/App.css';
 import Header from "./components/Header"
 import ProductFeedbackList from './components/ProductList';
-import AddUserFeedback from './components/AddUserFeedback';
+import AddProductFeedback from './components/AddProductFeedback';
+import EditProductFeedback from './components/EditProductFeedback';
+import ViewProductFeedback from './components/ViewProductFeedback';
+import DeleteProductFeedback from './components/DeleteProductFeedback';
 import { useProductFeedback  } from './components/ProductFeedbackContext'
 import TagsBoard from './components/TagsBoard';
 import {
@@ -41,11 +44,15 @@ function App() {
             <ViewFeedback/>
           </Route>
           <Route path="/add">
-            <AddUserFeedback/>
+            <AddProductFeedback/>
           </Route>
-          <Route path="/items/:id">
-            Item Details
+          <Route path="/edit/:id">
+            <EditProductFeedback/>
           </Route>
+          <Route path="/delete/:id">
+            <DeleteProductFeedback />
+          </Route>
+
         </Switch>
     </div>
   );

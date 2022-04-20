@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from "react";
-import "./index.css";
+import { useState, useEffect } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { useProductFeedback } from "./ProductFeedbackContext";
 
 
-function EditUser() {
+function EditProductFeedback() {
   const { editItem, items } = useProductFeedback()
   const history = useHistory();
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const id = useParams();
 
 
@@ -51,4 +48,4 @@ function EditUser() {
   );
 }
 
-export default EditUser;
+export default EditProductFeedback;

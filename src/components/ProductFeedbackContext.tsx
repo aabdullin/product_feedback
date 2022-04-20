@@ -7,7 +7,7 @@ interface ProductFeedbackContextProps {
     items: Array<ItemType>
     addItem: (name: string) => void,
     editItem: (id: number, name: string) => void,
-    deleteItem: (name: string) => void,
+    deleteItem: (id: number) => void,
     sortColumn: string,
     sortBy: (sortColumn: string) => void
     filter: (tag: string) => void    
@@ -130,21 +130,18 @@ export const ProductFeedbackProvider = ({children} : { children: ReactNode }) =>
     const addItem = () => {
       dispatch({
           type: 'addItem',
-          sortColumn
       })
     }
 
     const editItem = () => {
       dispatch({
           type: 'editItem',
-          sortColumn
       })
     }
 
     const deleteItem = () => {
         dispatch({
             type: 'deleteItem',
-            sortColumn
         })
     }
 
