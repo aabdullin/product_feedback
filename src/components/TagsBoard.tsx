@@ -3,6 +3,8 @@ import ProductFeedbackCard from "./ProductFeedback"
 import { useProductFeedback } from './ProductFeedbackContext';
 import { ItemType, items } from '../db';
 import Button from '@mui/material/Button';
+import '../css/TagsBoard.css';
+
 
 interface TagsBoardProps {
     items: Array<ItemType>

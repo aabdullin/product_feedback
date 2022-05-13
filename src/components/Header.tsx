@@ -18,7 +18,7 @@ const Header = () => {
     const { sortColumn, sortBy } = useProductFeedback();
 
     return (
-        <Grid className='product_feedback'>
+        <Grid className='product_feedback' style={{ paddingTop: '2%' }}>
             <Grid item xs={1} className="text">
                 Sort by :
             </Grid>
@@ -35,9 +35,11 @@ const Header = () => {
                     </FormControl>
                 </Box>
             </Grid>
-            <Link to="/add">
-                <Button variant="text" className='add_feedback-btn'>+ Add Feedback</Button>
-            </Link>
+            <Grid>
+                <Link to="/add">
+                    <Button variant="text" className='add_feedback-btn'>+ Add Feedback</Button>
+                </Link>
+            </Grid>
         </Grid>
     );
   };

@@ -3,11 +3,11 @@ import './css/App.css';
 import Header from "./components/Header"
 import ProductFeedbackList from './components/ProductList';
 import AddProductFeedback from './components/AddProductFeedback';
-import EditProductFeedback from './components/EditProductFeedback';
-import ViewProductFeedback from './components/ViewProductFeedback';
+import ProductFeedbackViewPage from './components/ProductFeedbackViewPage';
 import DeleteProductFeedback from './components/DeleteProductFeedback';
 import { useProductFeedback  } from './components/ProductFeedbackContext'
 import TagsBoard from './components/TagsBoard';
+import FrontendMentorBoard from './components/FrontendMentorBoard';
 import {
   Redirect,
   Switch,
@@ -15,12 +15,13 @@ import {
 } from "react-router-dom";
 import Grid from '@mui/material/Grid';
 
-function ViewFeedback() {
+function ListOfFeedbacks() {
   const { items } = useProductFeedback();
   return (
     <Grid container>
       <Grid item xs={3}>
         <TagsBoard items={items}/>
+        <FrontendMentorBoard/>
       </Grid>
       <Grid item xs={9}>
       <div className=".form">
@@ -41,13 +42,13 @@ function App() {
         <Switch>
           <Route exact path="/" render={() => <Redirect to="/list" />} />
           <Route path="/list">
-            <ViewFeedback/>
+            <ListOfFeedbacks/>
           </Route>
           <Route path="/add">
             <AddProductFeedback/>
           </Route>
-          <Route path="/edit/:id">
-            <EditProductFeedback/>
+          <Route path="/view/:id">
+            <ProductFeedbackViewPage />
           </Route>
           <Route path="/delete/:id">
             <DeleteProductFeedback />

@@ -31,14 +31,7 @@ const AddProductFeedback = () => {
       noValidate
       autoComplete="off"
     >
-        <TextField
-            id="outlined-multiline-flexible"
-            multiline
-            maxRows={4}
-            value={value}
-            onChange={handleChange}
-          >
-              <label>
+      <label>
               Product Feedback:
               <input className="form"
                   type="text"
@@ -47,6 +40,14 @@ const AddProductFeedback = () => {
                   onChange={(e) => setName(e.target.value)}
               />
               </label>
+        <TextField
+            id="outlined-multiline-flexible"
+            multiline
+            maxRows={4}
+            value={value}
+            onChange={handleChange}
+          >
+              
         </TextField>
 
         <div>
@@ -57,7 +58,7 @@ const AddProductFeedback = () => {
               type="submit"
               value="Submit"
               onClick={() => {
-                  addItem(name);
+                  addItem(name, value);
                   history.push("/");
               }}
               />

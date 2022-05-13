@@ -5,7 +5,7 @@ import {items, ItemType} from '../db'
 
 interface ProductFeedbackContextProps {
     items: Array<ItemType>
-    addItem: (name: string) => void,
+    addItem: (name: string, description: string) => void,
     editItem: (id: number, name: string) => void,
     deleteItem: (id: number) => void,
     sortColumn: string,
@@ -13,7 +13,8 @@ interface ProductFeedbackContextProps {
     filter: (tag: string) => void    
     clear: () => void,
     upvote: (id: number) => void,
-    downvote: (id: number) => void
+    downvote: (id: number) => void,
+    addComment: (id: number, comments: string) => void,
 }
 
 export const ProductFeedbackContext = React.createContext<ProductFeedbackContextProps>({
@@ -26,7 +27,8 @@ export const ProductFeedbackContext = React.createContext<ProductFeedbackContext
     filter: () => {},
     clear: () => {},
     upvote: () => {},
-    downvote: () => {}
+    downvote: () => {},
+    addComment: () => {},
 });
 
 export const useProductFeedback = () => {
@@ -45,17 +47,17 @@ export const ProductFeedbackProvider = ({children} : { children: ReactNode }) =>
     }
     function reducer(state: ReducerState, action: any) {
         console.log(state);
-        console.log(action.type);
+        console.log(action);
         console.log(items)
         switch (action.type) {
-          case "add":
+          case "addItem":
             return {
               items: [
+                ...state.items,
                 {
                   ...action.item,
                   id: state.items.length + 1,
                 },
-                ...state.items,
               ],
             };
           case "edit":
@@ -114,6 +116,28 @@ export const ProductFeedbackProvider = ({children} : { children: ReactNode }) =>
                 };
               })
             }
+          case "addComment":
+            return  {
+              items: state.items.map((u) => {       
+                if (u.id !== action.id) {
+                  return u;
+                }   
+
+                return {
+                  ...u,
+                  comments: [
+                    ...u.comments,
+                    {
+                      author: {
+                        name:'Jake',
+                        username: 'omgwtfbbq'
+                      },
+                      comment: action.comments
+                    }
+                  ]
+                };
+              })
+            }
           default:
             throw new Error();
         }
@@ -127,9 +151,16 @@ export const ProductFeedbackProvider = ({children} : { children: ReactNode }) =>
       })
   }
 
-    const addItem = () => {
+    const addItem = (name: string, description: string) => {
       dispatch({
           type: 'addItem',
+          item: {
+            name,
+            upvotes: '0',
+            comments: '0',
+            description,
+            tag: '',
+          },
       })
     }
 
@@ -172,6 +203,14 @@ export const ProductFeedbackProvider = ({children} : { children: ReactNode }) =>
       })
     }
 
+    const addComment = (id: number, comments: string) => {
+      dispatch({
+          type: 'addComment',
+          id,
+          comments,
+      })
+    } 
+
     useEffect(() => {
         sortBy('upvotes')
     }, [])
@@ -188,7 +227,8 @@ export const ProductFeedbackProvider = ({children} : { children: ReactNode }) =>
             filter,
             clear,
             upvote,
-            downvote
+            downvote,
+            addComment
           }}
         >
           {children}
