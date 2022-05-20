@@ -18,16 +18,19 @@ function TagsBoard ({ items } : TagsBoardProps){
             availableTags.push(item.tag)
         }
     })
+    const toProperCase = (str: string) => {
+        return str.substring(0, 1).toUpperCase() + str.substring(1, str.length).toLowerCase();
+        }
 
 
     return (
         <>
             <div className="tags">
-                <Button variant="contained" onClick={() => clear()}> Clear </Button>
+                <Button style={{ textTransform: 'none' }} className="button" variant="contained" onClick={() => clear()}> Clear </Button>
                 {availableTags.map((tag) => {
                     return (
-                        <Button variant="text" onClick={() => filter(tag)}>
-                            {tag}
+                        <Button style={{ textTransform: 'none' }} className="tag" variant="text" onClick={() => filter(tag)}>
+                            {toProperCase(tag)}
                         </Button>
                     )
                 })}

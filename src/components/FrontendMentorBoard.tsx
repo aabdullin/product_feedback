@@ -8,6 +8,8 @@ import Grid from '@mui/material/Grid';
 import {
     Link,
 } from "react-router-dom";
+import '../css/FrontendMentorBoard.css';
+
 
 
 
@@ -16,9 +18,15 @@ import {
 const FrontEndMentorBoard = () => {
 
     return (
-        <>
-            Hello
-        </>
+        <div className="feedback">
+            <div className="header">
+                Frontend Mentor
+            </div>
+            <div className="feedback_board">
+                Feedback Board
+            </div>
+
+        </div>
     );
 }
 

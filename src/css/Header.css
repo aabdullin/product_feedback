@@ -1,10 +1,22 @@
 .product_feedback {
+  margin: 10px;
   display: flex;
   flex-direction: row;
+  background-color: rgb(34, 52, 82);
+  border-radius: 10px;
+  color: white;
+  height: 90px;
+  align-items: center;
 }
 
 .add_feedback-btn {
   margin: 10px;
   height: 20px;
   width: 90px;
+  color: white;
+}
+
+.dropdown {
+  color: white;
+  flex: 1;
 }

@@ -20,11 +20,11 @@ function ListOfFeedbacks() {
   return (
     <Grid container>
       <Grid item xs={3}>
-        <TagsBoard items={items}/>
         <FrontendMentorBoard/>
+        <TagsBoard items={items}/>
       </Grid>
       <Grid item xs={9}>
-      <div className=".form">
+      <div className="form">
         <Header/>
         <ProductFeedbackList items={items}/>
       </div>

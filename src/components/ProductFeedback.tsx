@@ -21,17 +21,17 @@ interface CardProps {
 const ProductFeedbackCard: FC<CardProps> = ({id, name, upvotes, comments, description, tag}) => {
   const { upvote, downvote } = useProductFeedback();
   return (
-      <Grid container> 
-            <Grid item xs={2} alignItems="center">
+      <Grid container className="product"> 
+            <Grid item xs={1} alignItems="center">
               <Stack style={{width: '64px'}}>
                 <Typography variant="body1">
-                  <Button onClick={() => upvote(id) } style={{ minWidth: undefined }} variant="outlined" className='description'>+</Button>
+                  <Button onClick={() => upvote(id) } style={{ minWidth: undefined }} variant="outlined" className='plus'>+</Button>
                   <div style={{ textAlign: 'center' }}>{upvotes}</div>
-                  <Button onClick={() => downvote(id) }variant="outlined" className='description'>-</Button>
+                  <Button onClick={() => downvote(id) }variant="outlined" className='minus'>-</Button>
                   </Typography>
               </Stack>               
             </Grid>
-            <Grid item xs={8} style={{ textAlign: 'justify' }}>
+            <Grid item xs={9} style={{ textAlign: 'justify' }}>
               <Typography variant="body1">
                 <div className='title'>
                   <a href={"/view/" + id} style={{ color: '#036', textDecoration: 'none' }} >

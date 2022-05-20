@@ -1,8 +1,11 @@
 .card {
   display: flex;
   flex-direction: row;
-  margin: 0px;
+  margin: 10px;
   border-color: black;
+  background-color: white;
+  border-radius: 10px;
+
 }
 
 .left-item,
@@ -16,7 +19,11 @@
   flex-direction: column;
 }
 
-/* .upvote {
-  display: flex;
-  flex-direction: row;
-} */
+.title {
+  font-weight: bold;
+}
+
+
+.product_feedback {
+  padding: 10px;
+}

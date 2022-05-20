@@ -28,8 +28,9 @@ const Header = () => {
                         <Select
                             onChange={(e: SelectChangeEvent<string>) => { sortBy(e.target.value) }}
                             value={sortColumn}
+                            style={{color: 'white'}}
                         >
-                            <MenuItem value={"upvotes"}>Most upvotes</MenuItem>
+                            <MenuItem value={"upvotes"}> Most upvotes</MenuItem>
                             <MenuItem value={"comments"}>Most comments</MenuItem>
                         </Select>
                     </FormControl>
@@ -37,12 +38,17 @@ const Header = () => {
             </Grid>
             <Grid>
                 <Link to="/add">
-                    <Button variant="text" className='add_feedback-btn'>+ Add Feedback</Button>
-                </Link>
-            </Grid>
-        </Grid>
-    );
-  };
+                    <Button variant="text" sx={{
+                            width: 300,
+                            color: 'white',
+                            // textTransform: none,
+                        }}>+ Add Feedback
+                    </Button>
+                                    </Link>
+                                </Grid>
+                            </Grid>
+                        );
+                    };
 
 
 export default Header;
