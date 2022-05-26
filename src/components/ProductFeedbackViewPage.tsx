@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useProductFeedback } from "./ProductFeedbackContext";
 import ProductFeedbackCard from "./ProductFeedback";
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import "../css/ProductFeedbackViewPage.css"
+
 
 
 function ProductFeedbackViewPage() {
@@ -33,7 +37,7 @@ function ProductFeedbackViewPage() {
         padding: '10px',
       }}>
         {item.comments.map(comment => (
-          <div>
+          <div className="comment">
             {comment.author.name}<br />
             {comment.author.username}<br />
             {comment.comment}
@@ -46,16 +50,23 @@ function ProductFeedbackViewPage() {
         margin: '10px',
         padding: '10px',
       }}>
-        <textarea rows={5} cols={100} value={comments} onChange={(e) => { setComments(e.target.value) }}>
-        </textarea>
+        <TextField id="filled-multiline-flexible"
+          label="Type"
+          multiline 
+          maxRows={4}
+          value={comments} 
+          onChange={(e) => { setComments(e.target.value) }}>
+        </TextField>
+
+        {/* <textarea rows={5} cols={100} value={comments} onChange={(e) => { setComments(e.target.value) }}>
+        </textarea> */}
         <br />
-        <button onClick={() => { 
-          // setComments((prevState) => {
-          //   // 
-          //   return ''
-          // });
+        <Button variant="text" style={{ 
+            textTransform: 'none', 
+            width: 80}} 
+          onClick={() => { 
           addComment(item.id, comments);
-        }} >Submit</button>
+        }} >Submit</Button>
       </div>
     </>
   );

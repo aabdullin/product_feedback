@@ -26,10 +26,10 @@ let items: Array<ItemType> = [
     comments: [
       {
         author: {
-          name: 'Elijah Wood',
-          username: 'hexagon_betagon'
+          name: 'Elijah Daly',
+          username: 'PM'
         },
-        comment: 'Hold your ground! Hold your ground! Sons of Gondor, of Rohan, my brothers,. I see in your eyes the same fear that would take the heart'
+        comment: 'What Is a Tag Management Solution? A tag management solution or system (TMS) is a platform that allows you to deploy all the tags on your website via a single container tag'
       },
     ],
     description: "Easier to search for solutions based on a specific stack",
@@ -45,7 +45,7 @@ let items: Array<ItemType> = [
           name: 'Elon Musk',
           username: 'to_the_moon'
         },
-        comment: 'When something is important enough, you do it even if the odds are not in your favor.'
+        comment: 'You can change your display to a dark background using a dark theme or color inversion. Dark theme applies to the Android system UI and supported apps. Colors dont change in media, such as videos.'
       },
     ],
     description:
@@ -62,7 +62,7 @@ let items: Array<ItemType> = [
           name: 'Jeff Bezos',
           username: 'Amazillo'
         },
-        comment: 'I think frugality drives innovation, just like other constraints do. One of the only ways to get out of a tight box is to invent your way out'
+        comment: 'FAQ Component Implementation · Create Question and Answer items. Go to your sites Extras folder. · Create Question Groups (Optional)'
       },
     ],
     description: "Challenge specific Q&A would make for easy reference",
@@ -78,7 +78,7 @@ let items: Array<ItemType> = [
           name: 'Eljish Moss',
           username: 'hexagon_betagon'
         },
-        comment: 'Alsp,,.....'
+        comment: 'Click Start Review to upload a video or image file for review. Then, drag and drop the file to the dialog or click Browse for File to pick your file'
       },
     ],    description: "Images and screencasts can enhance comments on solutions",
     tag: "enhancement",
@@ -93,7 +93,7 @@ let items: Array<ItemType> = [
           name: 'Eljish Moss',
           username: 'hexagon_betagon'
         },
-        comment: 'Alsp,,.....'
+        comment: 'Images and screencasts can enhance comments on solutions'
       },
     ],    description: "Implement OIDC",
     tag: "bug",

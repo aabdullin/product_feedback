@@ -41,7 +41,6 @@ const Header = () => {
                     <Button variant="text" sx={{
                             width: 300,
                             color: 'white',
-                            // textTransform: none,
                         }}>+ Add Feedback
                     </Button>
                                     </Link>
