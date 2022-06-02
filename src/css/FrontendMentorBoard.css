@@ -1,19 +1,23 @@
 .feedback {
-    margin: 10px;
-    background-image: linear-gradient(to right, rgb(47, 199, 254), rgb(254, 117, 162));    text-transform: none;
-    border-radius: 10px;
-    color: white;
-    height: 90px;
+  margin: 10px;
+  background-image: linear-gradient(
+    to right,
+    rgb(47, 199, 254),
+    rgb(254, 117, 162)
+  );
+  text-transform: none;
+  border-radius: 10px;
+  color: white;
+  height: 90px;
 }
 
 .header {
-    margin: 10px;
-    padding: 10px;
-    font-weight: bold;
+  margin: 10px;
+  padding: 10px;
+  font-weight: bold;
 }
 
 .feedback_board {
-    margin: 10px;
-    padding: 10px;
-
+  margin: 10px;
+  padding: 10px;
 }
