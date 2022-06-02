@@ -2,13 +2,11 @@ import { useState, useEffect } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { useProductFeedback } from "./ProductFeedbackContext";
 
-
 function EditProductFeedback() {
-  const { editItem, items } = useProductFeedback()
+  const { editItem, items } = useProductFeedback();
   const history = useHistory();
   const [name, setName] = useState("");
   const id = useParams();
-
 
   useEffect(() => {
     const currentFeedback = items.find((u) => u.id === Number(id));
@@ -37,10 +35,7 @@ function EditProductFeedback() {
         type="submit"
         value="Submit"
         onClick={() => {
-          editItem(
-            Number(id),
-            name
-          );
+          editItem(Number(id), name);
           history.push("/");
         }}
       />

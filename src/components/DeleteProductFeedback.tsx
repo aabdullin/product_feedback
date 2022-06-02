@@ -2,8 +2,6 @@ import React, { useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useProductFeedback } from "./ProductFeedbackContext";
 
-
-
 function DeleteProductFeedback() {
   const history = useHistory();
   const id = useParams();
