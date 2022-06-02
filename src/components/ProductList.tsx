@@ -1,5 +1,4 @@
 import "../css/ProductList.css";
-import { useHistory } from "react-router-dom";
 
 import ProductFeedbackCard from "./ProductFeedback";
 import { ItemType } from "../db";

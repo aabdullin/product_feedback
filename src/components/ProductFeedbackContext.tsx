@@ -45,7 +45,6 @@ export const ProductFeedbackProvider = ({
   children: ReactNode;
 }) => {
   const [sortColumn, setSortColumn] = useState<string>("");
-  const [count, setCount] = useState(0);
   interface ReducerState {
     items: Array<ItemType>;
   }
