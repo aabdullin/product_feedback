@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { useProductFeedback } from "./ProductFeedbackContext";
+import Button from "@mui/material/Button";
 
 const AddProductFeedback = () => {
   const { addItem } = useProductFeedback();
@@ -25,10 +26,11 @@ const AddProductFeedback = () => {
     >
       <label>
         Product Feedback:
-        <input
+        <TextField
           className="form"
-          type="text"
-          name="name"
+          id="standard-basic"
+          label="Name"
+          variant="standard"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
@@ -43,16 +45,17 @@ const AddProductFeedback = () => {
 
       <div>
         <Link to="/">
-          <button>Cancel</button>
+          <Button>Cancel</Button>
         </Link>
-        <input
-          type="submit"
-          value="Submit"
+        <Button
           onClick={() => {
             addItem(name, value);
             history.push("/");
           }}
-        />
+        >
+          {" "}
+          Submit
+        </Button>
       </div>
     </Box>
   );
