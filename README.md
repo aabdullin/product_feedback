@@ -1,15 +1,12 @@
 # Product Feedback App
 
+product-feedbackapp.netlify.app
 ![Design preview for the Product feedback 1](./design/product1.png)
 ![Design preview for the Product feedback 2](./design/product2.png)
 
 ## Welcome! 👋
 
 Thanks for checking out this page.
-
-# Domain
-
-product-feedbackapp.netlify.app
 
 ## Available Scripts
 
