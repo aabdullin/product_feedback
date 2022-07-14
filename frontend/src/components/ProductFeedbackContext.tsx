@@ -132,7 +132,7 @@ export const ProductFeedbackProvider = ({
                 ...u.comments,
                 {
                   author: {
-                    name: "Jake",
+                    name: "Artur",
                     username: "omgwtfbbq",
                   },
                   comment: action.comments,
