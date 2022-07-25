@@ -1,8 +1,9 @@
 const Joi = require("joi");
 Joi.objectId = require("joi-objectid")(Joi);
 const mongoose = require("mongoose");
-const product_feedbacks = require("./routes/add");
+const product_feedbacks = require("./routes/feedbacks");
 const list = require("./routes/list");
+const cors = require("cors");
 
 const express = require("express");
 
@@ -14,7 +15,8 @@ mongoose
   .catch((err) => console.error("Could not connect to MongoDB..."));
 
 app.use(express.json());
-app.use("/api/add", product_feedbacks);
+app.use(cors());
+app.use("/api/feedbacks", product_feedbacks);
 // app.use("/api/list", list);
 
 const port = process.env.PORT || 3001;

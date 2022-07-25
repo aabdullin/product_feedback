@@ -1,9 +1,11 @@
 import React, { Reducer } from "react";
 import { useEffect, useContext, useReducer, useState, ReactNode } from "react";
-import { items, ItemType } from "../db";
+import { ItemType } from "../db";
+const axios = require("axios").default;
 
 interface ProductFeedbackContextProps {
   items: Array<ItemType>;
+  fetchItems: () => void;
   addItem: (name: string, description: string) => void;
   editItem: (id: number, name: string) => void;
   deleteItem: (id: number) => void;
@@ -19,6 +21,7 @@ interface ProductFeedbackContextProps {
 export const ProductFeedbackContext =
   React.createContext<ProductFeedbackContextProps>({
     items: [],
+    fetchItems: () => {},
     addItem: () => {},
     editItem: () => {},
     deleteItem: () => {},
@@ -44,6 +47,10 @@ export const ProductFeedbackProvider = ({
 }: {
   children: ReactNode;
 }) => {
+  useEffect(() => {
+    fetchItems();
+  }, []);
+
   const [sortColumn, setSortColumn] = useState<string>("");
   interface ReducerState {
     items: Array<ItemType>;
@@ -51,7 +58,6 @@ export const ProductFeedbackProvider = ({
   function reducer(state: ReducerState, action: any) {
     console.log(state);
     console.log(action);
-    console.log(items);
     switch (action.type) {
       case "addItem":
         return {
@@ -62,6 +68,10 @@ export const ProductFeedbackProvider = ({
               id: state.items.length + 1,
             },
           ],
+        };
+      case "fetchItems":
+        return {
+          items: action.feedback,
         };
       case "edit":
         return {
@@ -77,7 +87,7 @@ export const ProductFeedbackProvider = ({
           items: state.items.filter((u) => u.id !== action.item.id),
         };
       case "sortBy":
-        const sortedItems = items.sort((a, b) => {
+        const sortedItems = state.items.sort((a, b) => {
           if (action.sortColumn === "comments") {
             return Number(b.comments) - Number(a.comments);
           } else if (action.sortColumn === "upvotes") {
@@ -91,7 +101,7 @@ export const ProductFeedbackProvider = ({
           items: sortedItems,
         };
       case "filter":
-        const filteredItems = items.filter((item) => {
+        const filteredItems = state.items.filter((item) => {
           return item.tag === action.tag;
         });
         return {
@@ -99,7 +109,7 @@ export const ProductFeedbackProvider = ({
         };
       case "clear":
         return {
-          items: items,
+          items: [],
         };
       case "upvote":
         return {
@@ -146,7 +156,7 @@ export const ProductFeedbackProvider = ({
     }
   }
   const [state, dispatch] = useReducer<Reducer<ReducerState, any>>(reducer, {
-    items,
+    items: [],
   });
 
   const sortBy = (sortColumn: string) => {
@@ -156,10 +166,43 @@ export const ProductFeedbackProvider = ({
     });
   };
 
-  const addItem = (name: string, description: string) => {
+  const fetchItems = async () => {
+    const response = await axios.get("http://localhost:3001/api/feedbacks", {});
+    console.log(response);
+    // early exit when successful
+    if (response.error) {
+      console.log(response.error);
+      // return;
+    }
+
+    const feedback = await response.data;
+
+    // commit the change to context after successfully adding to server
+    dispatch({
+      type: "fetchItems",
+      feedback,
+    });
+  };
+
+  const addItem = async (name: string, description: string) => {
+    const response = await axios.post("http://localhost:3001/api/feedbacks", {
+      name,
+      description,
+    });
+    console.log(response);
+    // early exit when successful
+    if (response.error) {
+      console.log(response.error);
+      // return;
+    }
+
+    const feedback = await response.data;
+
+    // commit the change to context after successfully adding to server
     dispatch({
       type: "addItem",
       item: {
+        _id: feedback._id,
         name,
         upvotes: "0",
         comments: "0",
@@ -225,6 +268,7 @@ export const ProductFeedbackProvider = ({
       value={{
         items: [...state.items],
         addItem,
+        fetchItems,
         editItem,
         deleteItem,
         sortColumn,

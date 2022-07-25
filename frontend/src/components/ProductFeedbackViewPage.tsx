@@ -72,8 +72,6 @@ function ProductFeedbackViewPage() {
           }}
         ></TextField>
 
-        {/* <textarea rows={5} cols={100} value={comments} onChange={(e) => { setComments(e.target.value) }}>
-        </textarea> */}
         <br />
         <Button
           variant="text"
