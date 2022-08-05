@@ -18,8 +18,9 @@ function ProductFeedbackViewPage() {
   }, [items]);
 
   console.log(item);
+  console.log(items);
   if (item === undefined) {
-    history.push("/");
+    // history.push("/");
     return null;
   }
 

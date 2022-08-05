@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import { useProductFeedback } from "./ProductFeedbackContext";
 import { Typography } from "@mui/material";
+import { useHistory } from "react-router-dom";
 
 import "../css/ProductFeedback.css";
 import "@fontsource/roboto/400.css";
@@ -26,6 +27,8 @@ const ProductFeedbackCard: FC<CardProps> = ({
   description,
   tag,
 }) => {
+  const history = useHistory();
+
   const { upvote, downvote } = useProductFeedback();
   return (
     <Grid container className="product">
@@ -55,7 +58,10 @@ const ProductFeedbackCard: FC<CardProps> = ({
         <Typography variant="body1">
           <div className="title">
             <a
-              href={"/view/" + id}
+              onClick={() => {
+                console.log("Loading...");
+                history.push("/view/" + id);
+              }}
               style={{ color: "#036", textDecoration: "none" }}
             >
               {name}
@@ -65,9 +71,7 @@ const ProductFeedbackCard: FC<CardProps> = ({
           <div className="tag"> {tag} </div>
         </Typography>
       </Grid>
-      <Grid item xs={2}>
-        {/* {comments.comment} */}
-      </Grid>
+      <Grid item xs={2}></Grid>
     </Grid>
   );
 };

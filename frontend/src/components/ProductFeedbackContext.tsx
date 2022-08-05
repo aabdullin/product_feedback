@@ -109,7 +109,7 @@ export const ProductFeedbackProvider = ({
         };
       case "clear":
         return {
-          items: [],
+          items: state.items,
         };
       case "upvote":
         return {
@@ -231,10 +231,8 @@ export const ProductFeedbackProvider = ({
     });
   };
 
-  const clear = () => {
-    dispatch({
-      type: "clear",
-    });
+  const clear = async () => {
+    await fetchItems();
   };
 
   const upvote = (id: number) => {
