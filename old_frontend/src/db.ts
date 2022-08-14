@@ -1,0 +1,125 @@
+export interface AuthorType {
+  name: string;
+  username: string;
+}
+
+export interface CommmentType {
+  author: AuthorType;
+  comment: string;
+}
+
+export interface ItemType {
+  id: number;
+  name: string;
+  upvotes: string;
+  comments: CommmentType[];
+  description: string;
+  tag: string;
+}
+
+let items: Array<ItemType> = [
+  {
+    id: 1,
+    name: "Add Tags for solutions",
+    upvotes: "112",
+    comments: [
+      {
+        author: {
+          name: "Elijah Daly",
+          username: "PM",
+        },
+        comment:
+          "What Is a Tag Management Solution? A tag management solution or system (TMS) is a platform that allows you to deploy all the tags on your website via a single container tag",
+      },
+    ],
+    description: "Easier to search for solutions based on a specific stack",
+    tag: "enhancement",
+  },
+  {
+    id: 2,
+    name: "Add a dark theme option",
+    upvotes: "99",
+    comments: [
+      {
+        author: {
+          name: "Elon Musk",
+          username: "to_the_moon",
+        },
+        comment:
+          "You can change your display to a dark background using a dark theme or color inversion. Dark theme applies to the Android system UI and supported apps. Colors dont change in media, such as videos.",
+      },
+    ],
+    description:
+      "It would help people with light sensitivities and who prefer dark mode",
+    tag: "feature",
+  },
+  {
+    id: 3,
+    name: "Q&A within the challenge hubs",
+    upvotes: "65",
+    comments: [
+      {
+        author: {
+          name: "Jeff Bezos",
+          username: "Amazillo",
+        },
+        comment:
+          "FAQ Component Implementation · Create Question and Answer items. Go to your sites Extras folder. · Create Question Groups (Optional)",
+      },
+    ],
+    description: "Challenge specific Q&A would make for easy reference",
+    tag: "feature",
+  },
+  {
+    id: 4,
+    name: "Add image/video upload to feedback",
+    upvotes: "51",
+    comments: [
+      {
+        author: {
+          name: "Eljish Moss",
+          username: "hexagon_betagon",
+        },
+        comment:
+          "Click Start Review to upload a video or image file for review. Then, drag and drop the file to the dialog or click Browse for File to pick your file",
+      },
+    ],
+    description: "Images and screencasts can enhance comments on solutions",
+    tag: "enhancement",
+  },
+  {
+    id: 5,
+    name: "Add credentials",
+    upvotes: "33",
+    comments: [
+      {
+        author: {
+          name: "Eljish Moss",
+          username: "hexagon_betagon",
+        },
+        comment: "Images and screencasts can enhance comments on solutions",
+      },
+    ],
+    description: "Implement OIDC",
+    tag: "bug",
+  },
+  {
+    id: 6,
+    name: "Add feature to connect with customer support",
+    upvotes: "11",
+    comments: [
+      {
+        author: {
+          name: "Jeff Bezos",
+          username: "Amazillo",
+        },
+        comment:
+          "I think frugality drives innovation, just like other constraints do. One of the only ways to get out of a tight box is to invent your way out",
+      },
+    ],
+    description: "Customer support ",
+    tag: "ui",
+  },
+];
+
+export { items };

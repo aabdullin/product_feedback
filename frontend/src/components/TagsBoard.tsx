@@ -16,9 +16,12 @@ function TagsBoard({ items }: TagsBoardProps) {
     }
   });
   const toProperCase = (str: string) => {
+    if (str === undefined) {
+      return "";
+    }
     return (
-      str?.substring(0, 1)?.toUpperCase() +
-      str?.substring(1, str.length)?.toLowerCase()
+      str.substring(0, 1).toUpperCase() +
+      str.substring(1, str.length).toLowerCase()
     );
   };
 

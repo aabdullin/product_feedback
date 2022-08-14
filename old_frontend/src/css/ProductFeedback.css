@@ -1,0 +1,27 @@
+.card {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+  border-color: black;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.left-item,
+.right-item,
+.middle {
+  margin: 0px 10px 12px 0px;
+}
+
+.middle {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.product_feedback {
+  padding: 10px;
+}
